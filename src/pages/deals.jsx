@@ -9,7 +9,7 @@ import { AuthLayout } from '@/components/AuthLayout'
 import { useStage } from '../context/StageContext'
 
 export default function Deals() {
-  const { selectedStage, setSelectedStage } = useStage()
+  const { selectedStage, setSelectedStage } = useStage('Deals Won')
   console.log(selectedStage)
   return (
     <div className="mx-auto max-w-7xl sm:px-6 lg:px-4">
@@ -25,7 +25,13 @@ export default function Deals() {
       <Tabs />
       <Dropdown />
 
-      {selectedStage && <DealCategory category={selectedStage} />}
+      {/* {selectedStage && <DealCategory category={selectedStage} />} */}
+
+      {!selectedStage || selectedStage === 'Deals Won' ? (
+        <DealCategory category="Deals Won" />
+      ) : (
+        <DealCategory category={selectedStage} />
+      )}
     </div>
   )
 }
